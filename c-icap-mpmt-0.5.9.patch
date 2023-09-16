@@ -1,0 +1,20 @@
+--- c_icap-0.5.7/mpmt_server.c	2020-10-19 05:52:10.000000000 -0600
++++ c_icap-0.5.6/mpmt_server.c	2020-09-09 23:43:56.000000000 -0600
+@@ -1099,6 +1099,9 @@
+     register_command("test", MONITOR_PROC_CMD | CHILDS_PROC_CMD, test_command);
+ }
+ 
++extern void icap_stats_process(void);
++
++
+ int start_server()
+ {
+     int child_indx, pid, i, ctl_socket;
+@@ -1139,6 +1142,7 @@
+     }
+     if (pid != 0) {
+         main_signals();
++        icap_stats_process();
+ 
+         execute_commands_no_lock(CI_CMD_MONITOR_START);
+         while (1) {

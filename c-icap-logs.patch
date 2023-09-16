@@ -1,0 +1,21 @@
+diff -Naur c_icap-0.5.7-orig/c-icap.conf.in c_icap-0.5.7/c-icap.conf.in
+--- c_icap-0.5.7-orig/c-icap.conf.in	2020-09-14 08:17:26.000000000 -0600
++++ c_icap-0.5.7/c-icap.conf.in	2020-11-03 17:52:21.664437156 -0700
+@@ -603,7 +603,7 @@
+ #	information about the c-icap server.
+ # Default:
+ #	ServerLog @prefix@/var/log/server.log
+-ServerLog @prefix@/var/log/server.log
++ServerLog /var/log/c-icap/server.log
+ 
+ # TAG: AccessLog
+ # Format: AccessLog LogFile [LogFormat] [[!]acl1] [[!]acl2] [...]
+@@ -618,7 +618,7 @@
+ #	AccessLog @prefix@/var/log/access.log
+ # Example:
+ #	AccessLog @prefix@/var/log/access.log MyFormat all
+-AccessLog @prefix@/var/log/access.log
++AccessLog /var/log/c-icap/access.log
+ 
+ # TAG: Logger
+ # Format: Logger LoggerName

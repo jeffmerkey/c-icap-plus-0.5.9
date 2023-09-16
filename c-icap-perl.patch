@@ -1,0 +1,27 @@
+--- c_icap-0.5.7/modules/perl_handler.c	2018-11-09 02:42:02.000000000 -0700
++++ c_icap-0.5.6/modules/perl_handler.c	2020-10-22 00:28:23.000000000 -0600
+@@ -36,7 +36,7 @@
+ };
+ 
+ int init_perl_handler(struct ci_server_conf *server_conf);
+-ci_service_module_t *load_perl_module(char *service_file);
++ci_service_module_t *load_perl_module(const char *service_file, const char **args);
+ 
+ 
+ CI_DECLARE_DATA service_handler_module_t module = {
+@@ -71,13 +71,13 @@
+ }
+ 
+ 
+-ci_service_module_t *load_perl_module(char *service_file)
++ci_service_module_t *load_perl_module(const char *service_file, const char **args)
+ {
+     ci_service_module_t *service = NULL;
+     struct perl_data *perl_data;
+     char *argv[2];
+     argv[0] = NULL;
+-    argv[1] = service_file;
++    argv[1] = (char *)service_file;
+     service = malloc(sizeof(ci_service_module_t));
+     perl_data = malloc(sizeof(struct perl_data));
+ 
