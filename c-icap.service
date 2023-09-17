@@ -1,0 +1,17 @@
+# a Centos 7 systemd service file to manage c-icap.
+# install this file at /usr/lib/systemd/system/ on Centos 7
+[Unit]
+Description=C-ICAP server
+After=syslog.target network.target network-online.target nss-lookup.target remote-fs.target
+
+[Service]
+Type=forking
+LimitNOFILE=16384
+EnvironmentFile=/etc/sysconfig/c-icap
+ExecStart=/usr/sbin/c-icap $OPTIONS
+ExecReload=echo -n "reconfigure" > /var/run/c-icap/c-icap.ctl
+ExecStop=echo -n "stop" > /var/run/c-icap/c-icap.ctl
+TimeoutSec=0
+
+[Install]
+WantedBy=multi-user.target
